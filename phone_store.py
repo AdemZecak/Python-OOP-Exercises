@@ -1,8 +1,5 @@
 import csv 
 
-
-
-
 class Item: 
 
     pay_rate = 0.8 #20% discount
@@ -10,7 +7,7 @@ class Item:
 
     def __init__(self,name,price,quantity):
 
-        #price cannot be lower or equal zero 
+        #price cannot be lower or equal to zero 
 
         assert price >= 0, f"Price {price} is not greater than or equal to zero!"
         assert quantity >= 0, f"Quantity {quantity} is not greater than or equal to zero!"
@@ -46,22 +43,21 @@ class Item:
                 quantity = int(item.get('quantity')),
 
             )
+    @staticmethod
+    def is_integer(num):
+        #count out float with .0
+        if isinstance(num,float):
+            #count out the floats with 0
+            return num.is_integer()
+        elif isinstance(num,int):
+            return True
+        else:
+            return False        
+
+
 
     def __repr__(self):
         return f"Item('{self.name}',{self.price},{self.quantity})"
-
-
-
-
-
-Item.instantiate_from_csv()
-print(Item.all)
-
-
-
-
-
-
 
 
 
