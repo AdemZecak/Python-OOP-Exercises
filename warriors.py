@@ -4,6 +4,8 @@
 
 #battle
 #points 
+import random
+
 
 
 class Warrior():
@@ -35,17 +37,7 @@ class Knight(Warrior):
         super().__init__(name,health,speed,attack)
         self.spear = spear
 
-    def battle(self):
 
-        battle_mode = True
-
-        if battle_mode == True:
-            print("The game has started")
-            print("There are two warriors on the field {knight.name} vs {archer.name}")
-
-
-
-    
 
 
 
@@ -54,9 +46,18 @@ warrior = Warrior("Vega",100,50,20)
 archer = Archer("Legolas",100,60,30,50)
 
 knight = Knight("Cavalier",120,40,30,35)
-knight.battle()
 
 
+warriors = (archer,knight)
+random_choice = random.choice(warriors)
+
+while True: 
+
+
+    print("The game has started")
+    print(f"There are two warriors on the field {knight.name} vs {archer.name}")
+    print(random_choice.name)
+    break
 
 
 
