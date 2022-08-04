@@ -5,59 +5,131 @@
 #battle
 #points 
 import random
+import time
+import os
 
 
+#this could be the BOSS warrior
 
 class Warrior():
 
-    def __init__(self,name,health,speed,attack):
+    def __init__(self,name,health,attack):
 
         self.name = name 
-        self.health = health 
-        self.speed = speed 
-        self.attack = attack 
+        self.health = health
+        self.attack = attack
 
     def action(self):
-        print(f"{self.name} is attacking...with his maximum speed of {self.speed}")
+        print(f"{self.name} is attacking...with his maximum speed")
 
-
+#simple battle between two lower rank warriors 
 
 class Archer(Warrior):
 
-    def __init__(self,name,health,speed,attack,arrows):
+    def __init__(self,name,health,attack,arrows):
 
-        super().__init__(name,health,speed,attack)
+        super().__init__(name,health,attack)
         self.arrows = arrows 
 
 
 class Knight(Warrior):
 
-    def __init__(self,name,health,speed,attack,spear):
+    def __init__(self,name,health,attack,spear):
 
-        super().__init__(name,health,speed,attack)
+        super().__init__(name,health,attack)
         self.spear = spear
 
 
 
 
 
-warrior = Warrior("Vega",100,50,20)
+warrior = Warrior("Vega",200,20)
 
-archer = Archer("Legolas",100,60,30,50)
+archer = Archer("Legolas",20,60,55)
 
-knight = Knight("Cavalier",120,40,30,35)
+knight = Knight("Cavalier",30,40,35)
 
 
-warriors = (archer,knight)
-random_choice = random.choice(warriors)
+warriors = (archer.name,knight.name)
+
+#random health damage
+damage = random.randint(1,7)
+
+#knight weapon health damage
+spear_damage = random.randint(3,9)
+#archer weapon health damage
+arrow_damage = random.randint(1,6)
+
+
+#random weapon loss
+weapon = random.randint(1,5)
+
+
+print("The game has started")
+print(f"There are two warriors in the field {knight.name} vs {archer.name}")
+print("")
 
 while True: 
 
 
-    print("The game has started")
-    print(f"There are two warriors on the field {knight.name} vs {archer.name}")
-    print(random_choice.name)
-    break
+    #battle
+    choice = random.choice(warriors)
+
+    if choice == archer.name: 
+        print("Archer is attacking....")
+        knight.health = knight.health - arrow_damage
+        #archer arrows are decreasing
+        archer.arrows = archer.arrows - weapon
+        print("-"*55)
+        print("Archer health: ",archer.health)
+        print("Archer's arrows: ",archer.arrows)
+        print("*"*55)
+        print("Knight health: ",knight.health)
+        print("Knight's weapon: ",knight.spear)
+        print("*"*55)
+        print("-"*55)
+        print("")
+        if archer.health <= 0:
+            print(knight.name,"Won!")
+            break
+        elif archer.arrows <= 0:
+            print("You have loss all your arrows, prepare to die!")
+        time.sleep(4)
+        os.system("cls")
+
+
+
+    if choice == knight.name: 
+        print("Knight is attacking....")
+        archer.health = archer.health - spear_damage
+        #archer arrows are decreasing
+        knight.spear = knight.spear - weapon
+        print("-"*55)
+        print("Archer health: ",archer.health)
+        print("Archer's arrows: ",archer.arrows)
+        print("*"*55)
+        print("Knight health: ",knight.health)
+        print("Knight's weapon: ",knight.spear)
+        print("*"*55)
+        print("-"*55)
+        print("")
+
+    
+
+        if knight.health <= 0:
+            print(archer.name,"Won!")
+            break
+        elif knight.spear <= 0:
+            print("You have loss all your arrows, prepare to die!")
+        time.sleep(4)
+        os.system("cls")
+
+
+
+    
+
+        
+
 
 
 
