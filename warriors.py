@@ -43,11 +43,11 @@ class Knight(Warrior):
 
 
 
-warrior = Warrior("Vega",200,20)
+warrior = Warrior("Vega",200,50)
 
-archer = Archer("Legolas",20,60,55)
+archer = Archer("Legolas",20,20,55)
 
-knight = Knight("Cavalier",30,40,35)
+knight = Knight("Cavalier",30,20,35)
 
 
 warriors = (archer.name,knight.name)
@@ -75,6 +75,21 @@ while True:
     #battle
     choice = random.choice(warriors)
 
+    if archer.health <= 0:
+            print(knight.name,"Won!")
+            break
+    elif archer.arrows <= 0:
+        print("You have loss all your arrows, prepare to die!")
+
+
+    if knight.health <= 0:
+            print(archer.name,"Won!")
+            break
+    elif knight.spear <= 0:
+        print("You have loss all your arrows, prepare to die!")
+        time.sleep(1)
+        os.system("cls")
+
     if choice == archer.name: 
         print("Archer is attacking....")
         knight.health = knight.health - arrow_damage
@@ -89,12 +104,7 @@ while True:
         print("*"*55)
         print("-"*55)
         print("")
-        if archer.health <= 0:
-            print(knight.name,"Won!")
-            break
-        elif archer.arrows <= 0:
-            print("You have loss all your arrows, prepare to die!")
-        time.sleep(4)
+        time.sleep(1)
         os.system("cls")
 
 
@@ -113,15 +123,6 @@ while True:
         print("*"*55)
         print("-"*55)
         print("")
-
-    
-
-        if knight.health <= 0:
-            print(archer.name,"Won!")
-            break
-        elif knight.spear <= 0:
-            print("You have loss all your arrows, prepare to die!")
-        time.sleep(4)
         os.system("cls")
 
 
